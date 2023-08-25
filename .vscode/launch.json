@@ -1,0 +1,109 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Attach to Process",
+        "type": "node",
+        "request": "attach",
+        "processId": "${command:PickProcess}"
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Debug Node Server",
+        "program": "${workspaceFolder}/dev-server/server.js",
+        "console": "integratedTerminal"
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Electron: Main",
+        "runtimeExecutable": "${workspaceFolder}/desktop/node_modules/.bin/electron",
+        "protocol": "inspector",
+        "console": "integratedTerminal",
+        "runtimeArgs": [
+          "--remote-debugging-port=9222",
+          "${workspaceRoot}/desktop/index.js"
+        ],
+        "windows": {
+          "runtimeExecutable": "${workspaceFolder}/desktop/node_modules/.bin/electron.cmd"
+        }
+      },
+      {
+        "name": "Electron: Renderer (React)",
+        "type": "chrome",
+        "request": "attach",
+        "port": 9223,
+        "sourceMaps": true,
+        "webRoot": "${workspaceRoot}/react/src",
+        "timeout": 30000
+      },
+      {
+        "name": "Electron: Renderer (Angular)",
+        "type": "chrome",
+        "request": "attach",
+        "port": 9224,
+        "sourceMaps": true,
+        "webRoot": "${workspaceRoot}/angular/src/options",
+        "timeout": 30000
+      },
+      {
+        "name": "Launch Chrome (React:3000)",
+        "type": "chrome",
+        "request": "launch",
+        "port": 9225,
+        "url": "http://GBMACVCSW5658.fm.rbsgrp.net:3000/xclient/v2/xweb/#/",
+        "sourceMaps": true,
+        "trace": true,
+        "webRoot": "${workspaceRoot}/react/src"
+      },
+      {
+        "name": "Launch Chrome (React:8081)",
+        "type": "chrome",
+        "request": "launch",
+        "port": 9226,
+        "url": "http://GBMACVCSW5658.fm.rbsgrp.net:8081/xclient/v2/xweb/#/",
+        "sourceMaps": true,
+        "trace": true,
+        "webRoot": "${workspaceRoot}/react/src"
+      },
+      {
+        "name": "Launch Chrome (Angular)",
+        "type": "chrome",
+        "request": "attach",
+        "port": 9227,
+        "sourceMaps": true,
+        "url": "http://GBMACVCSW5658.fm.rbsgrp.net:8081/xclient/xweb/options",
+        "webRoot": "${workspaceRoot}/angular/src/options",
+        "trace": true
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Jest Current File",
+        "program": "${workspaceFolder}/automation/node_modules/.bin/jest",
+        "args": [
+          "${fileBasenameNoExtension}",
+          "--config",
+          "automation/jest.config.js"
+        ],
+        "console": "integratedTerminal",
+        "internalConsoleOptions": "neverOpen",
+        "disableOptimisticBPs": true,
+        "windows": {
+          "program": "${workspaceFolder}/automation/node_modules/jest/bin/jest"
+        }
+      }
+    ],
+    "compounds": [
+      {
+        "name": "Electron: All",
+        "configurations": [
+          "Electron: Main",
+          "Electron: Renderer (React)",
+          "Electron: Renderer (Angular)"
+        ]
+      }
+    ]
+  }
+  

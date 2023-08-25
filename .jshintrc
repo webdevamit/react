@@ -1,0 +1,28 @@
+{
+  "predef": [
+    "define",
+    "require",
+    "_",
+    "__",
+    "moment",
+    "Slick",
+    "rbs",
+    "Papa",
+    "$",
+    "maybe",
+    "angular",
+    "xw",
+    "d3",
+    "localStorage",
+    "sessionStorage",
+    "document",
+    "window",
+    "jQuery",
+    "console",
+    "module"
+  ],
+  "expr": true,
+  "newcap": true,
+  "esversion": 9,
+  "quotmark": "single"
+}
